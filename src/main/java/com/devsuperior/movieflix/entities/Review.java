@@ -22,7 +22,7 @@ public class Review implements  Serializable {
 	private Long id;
 	private String text;
 	
-	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "movie_id")
 	public Movie movie ;

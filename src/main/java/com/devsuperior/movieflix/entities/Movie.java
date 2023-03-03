@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -32,12 +35,13 @@ public class Movie implements  Serializable {
 	
 	@Column(columnDefinition="TEXT")
 	private String synopsis;
+	
 	@ManyToOne
 	@JoinColumn(name = "genre_id", referencedColumnName = "id")
 	private Genre genre;
 	
-	@OneToMany
-	@JoinColumn(name = "movie_id")
+	@JsonIgnore
+	@OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
 	private List<Review> reviews = new ArrayList<>();
 	
 	public  Movie() {

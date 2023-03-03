@@ -73,9 +73,7 @@ public class ReviewDTO implements Serializable {
 		return user;
 	}
 
-	public void setUserId(User userId) {
-		this.user = userId;
-	}
+	
 
 
 	
